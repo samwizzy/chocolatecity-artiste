@@ -5,14 +5,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import store from "./store";
 import themeConfig from "./config/themeConfig";
 
-import Home from "./views/pages/Home";
-import Services from "./views/pages/Services";
-import Users from "./views/pages/Users";
-import User from "./views/pages/Users/User";
 import Artists from "./views/pages/Artists";
 import Albums from "./views/pages/Albums";
 import Tweets from "./views/pages/Tweets";
-import Portfolio from "./views/pages/Portfolio";
 import ErrorBoundary from "./hoc/ErrorBoundary";
 import Layout from "@/views/layouts";
 
@@ -28,12 +23,7 @@ function App() {
             <BrowserRouter>
               <Layout>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="services" element={<Services />} />
-                  <Route path="portfolios" element={<Portfolio />} />
-                  <Route path="users" element={<Users />}>
-                    <Route path=":userId" element={<User />} />
-                  </Route>
+                  <Route path="/" element={<Artists />} />
                   <Route path="artistes">
                     <Route index element={<Artists />} />
                     <Route path=":userId/albums" element={<Albums />} />
