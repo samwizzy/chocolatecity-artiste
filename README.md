@@ -6,6 +6,37 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## Exercise 1
+
+E.g: Given an Array1 = [1, 3, 6, 4, 1, 2] returns 5, and Array2 = [5, -1, -3]
+
+```function getPositive(nums) {
+  let set = new Set();
+  let min = Math.min(...nums);
+  let max = Math.max(...nums);
+
+  for (let i = min; i <= max; i++) {
+    if (!nums.includes(i) && Math.sign(i) === 1) {
+      set.add(i);
+      return i;
+    }
+  }
+}
+```
+
+## Exercise 2
+
+You are expected to use the following endpoints to implement the above requirements. Feel
+free to use any network library (Axios or Fetch) of choice.
+
+- Get all artistes (GET) https://jsonplaceholder.typicode.com/users
+- Get artiste’s albums (GET) https://jsonplaceholder.typicode.com/albums
+- Get album photos (GET) https://jsonplaceholder.typicode.com/albums/{album-id}/photos
+- Get all tweets (GET) https://jsonplaceholder.typicode.com/comments
+- Create tweet (POST) https://jsonplaceholder.typicode.com/comments
+- Update tweet (PUT) https://jsonplaceholder.typicode.com/comments/{comment-id}
+- Delete tweet (DELETE) https://jsonplaceholder.typicode.com/comments/{comment-id}
+
 In the project directory, you can run:
 
 ### `yarn start`
