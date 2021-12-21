@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getTweetsAsync,
@@ -35,7 +35,6 @@ const TweetsPage = () => {
   const { tweets, loading } = useSelector(({ tweet }) => tweet);
 
   const handlePageChange = (event, value) => {
-    console.log(value, "page");
     setPage(value);
   };
 
@@ -43,20 +42,18 @@ const TweetsPage = () => {
     dispatch(getTweetsAsync(page));
   }, [dispatch, page]);
 
-  console.log(tweets, "tweets");
-
   return (
-    <div className="max-w-6xl mr-auto p-8">
+    <div className="md:max-w-6xl w-full mr-auto p-8">
       <h2 className="text-4xl font-bold pb-8">Tweets</h2>
 
-      <div className="grid grid-cols-12 gap-16">
+      <div className="grid grid-cols-12 md:gap-x-16 gap-y-16">
         <div className="col-span-12 md:col-span-7">
           <h2 className="text-2xl font-medium text-gray-800 pb-6">
             Your tweets
           </h2>
 
           {loading ? (
-            <CircularProgress />
+            <CircularProgress size={16} />
           ) : (
             <List dense className="border-l-4 border-gray-400">
               {tweets.map((a) => (
@@ -119,4 +116,4 @@ const TweetsPage = () => {
   );
 };
 
-export default TweetsPage;
+export default memo(TweetsPage);

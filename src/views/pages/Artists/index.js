@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getArtistesAsync } from "@/store/reducers/artistSlice";
@@ -12,7 +12,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
-import { HiUserCircle, HiOutlineExternalLink } from "react-icons/hi";
+import { HiOutlineEye } from "react-icons/hi";
+import { FaRegUser } from "react-icons/fa";
 import { RiDiscLine } from "react-icons/ri";
 import { CircularProgress } from "@mui/material";
 import _ from "lodash";
@@ -39,24 +40,24 @@ const ArtistesPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="max-w-6xl mr-auto p-8 border">
+    <div className="md:max-w-6xl w-full md:mr-auto p-8">
       <h2 className="text-4xl font-bold pb-8">Chocolate city artistes</h2>
 
-      <div className="grid grid-cols-12 gap-16">
+      <div className="grid grid-cols-12 md:gap-x-16 gap-y-16">
         <div className="col-span-12 md:col-span-7">
           <h2 className="text-2xl font-medium text-gray-800 pb-6">
             Artistes list
           </h2>
 
           {artistLoading ? (
-            <CircularProgress />
+            <CircularProgress size={16} />
           ) : (
             <List dense className="border-l-4 border-gray-400">
               {artistes.map((a) => (
-                <ListItem key={a.id}>
+                <ListItem key={a.id} alignItems="flex-start">
                   <ListItemAvatar>
                     <Avatar>
-                      <HiUserCircle />
+                      <FaRegUser />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
@@ -85,7 +86,7 @@ const ArtistesPage = () => {
                       aria-label="view"
                       onClick={() => navigate(`/artistes/${a.id}/albums`)}
                     >
-                      <HiOutlineExternalLink size={20} />
+                      <HiOutlineEye size={20} />
                     </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
@@ -96,12 +97,13 @@ const ArtistesPage = () => {
 
         <div className="col-span-12 md:col-span-5">
           <h2 className="text-2xl font-medium text-gray-800 pb-6">
-            Artiste's Album
+            {_.find(artistes, { id: albums?.[0]?.userId })?.name} Artiste's
+            Album
           </h2>
 
           {albumLoading ? (
-            <CircularProgress />
-          ) : (
+            <CircularProgress size={16} />
+          ) : albums.length ? (
             <List dense className="border-l-4 border-green-600">
               {albums.map((a) => (
                 <ListItem key={a.id}>
@@ -121,11 +123,11 @@ const ArtistesPage = () => {
                 </ListItem>
               ))}
             </List>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
   );
 };
 
-export default ArtistesPage;
+export default memo(ArtistesPage);

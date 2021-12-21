@@ -7,8 +7,16 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { HiOutlineInboxIn, HiOutlineMailOpen } from "react-icons/hi";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  list: {
+    flexGrow: 1,
+  },
+}));
 
 function Layout({ children }) {
+  const classes = useStyles();
   const navigate = useNavigate();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -18,16 +26,16 @@ function Layout({ children }) {
   };
 
   return (
-    <div className="w-full flex">
-      <div className="min-h-screen w-64 max-w-lg bg-gray-700">
-        <Box sx={{ width: "100%", maxWidth: 360, color: "#ccc" }}>
-          <List component="nav" aria-label="main nav">
+    <div className="w-full block md:flex">
+      <div className="md:min-h-screen md:w-64 md:max-w-lg w-full bg-gray-700">
+        <Box sx={{ width: "100%", maxWidth: "100%", color: "#ccc" }}>
+          <List component="nav" aria-label="main nav" className={classes.list}>
             <ListItemButton
               selected={selectedIndex === 0}
               onClick={(event) => handleListItemClick(event, 0, "artistes")}
             >
               <ListItemIcon>
-                <HiOutlineInboxIn />
+                <HiOutlineInboxIn color="#ccc" />
               </ListItemIcon>
               <ListItemText primary="Artistes" />
             </ListItemButton>
@@ -36,7 +44,7 @@ function Layout({ children }) {
               onClick={(event) => handleListItemClick(event, 1, "tweets")}
             >
               <ListItemIcon>
-                <HiOutlineMailOpen />
+                <HiOutlineMailOpen color="#ccc" />
               </ListItemIcon>
               <ListItemText primary="Tweets" />
             </ListItemButton>
@@ -44,7 +52,7 @@ function Layout({ children }) {
           <Divider />
         </Box>
       </div>
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 w-full border">{children}</div>
     </div>
   );
 }
