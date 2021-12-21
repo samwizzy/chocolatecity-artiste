@@ -5,7 +5,6 @@ import {
   deleteTweetAsync,
   openDialog,
 } from "@/store/reducers/tweetSlice";
-import { makeStyles } from "@mui/styles";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -20,18 +19,9 @@ import { CircularProgress } from "@mui/material";
 import TweetDialog from "./dialogs/TweetDialog";
 import NewTweet from "./NewTweet";
 
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    "&.MuiAvatar-root": {
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-}));
-
 const TweetsPage = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const classes = useStyles();
   const { tweets, loading } = useSelector(({ tweet }) => tweet);
 
   const handlePageChange = (event, value) => {
@@ -59,7 +49,7 @@ const TweetsPage = () => {
               {tweets.map((a) => (
                 <ListItem key={a.id} alignItems="flex-start">
                   <ListItemAvatar>
-                    <Avatar className={classes.avatar}>
+                    <Avatar sx={{ backgroundColor: "primary.main" }}>
                       <FaRegUser size="24" />
                     </Avatar>
                   </ListItemAvatar>

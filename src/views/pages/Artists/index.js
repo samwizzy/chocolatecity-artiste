@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getArtistesAsync } from "@/store/reducers/artistSlice";
 import { getAlbumsAsync } from "@/store/reducers/albumSlice";
-import { makeStyles } from "@mui/styles";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
@@ -18,18 +17,9 @@ import { RiDiscLine } from "react-icons/ri";
 import { CircularProgress } from "@mui/material";
 import _ from "lodash";
 
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    "&.MuiAvatar-root": {
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-}));
-
 const ArtistesPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const classes = useStyles();
   const { artistes, loading: artistLoading } = useSelector(
     ({ artist }) => artist
   );
@@ -108,7 +98,7 @@ const ArtistesPage = () => {
               {albums.map((a) => (
                 <ListItem key={a.id}>
                   <ListItemAvatar>
-                    <Avatar className={classes.avatar}>
+                    <Avatar sx={{ backgroundColor: "primary.main" }}>
                       <RiDiscLine />
                     </Avatar>
                   </ListItemAvatar>

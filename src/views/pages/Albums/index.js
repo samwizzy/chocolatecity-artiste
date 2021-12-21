@@ -6,7 +6,6 @@ import {
   getAlbumsAsync,
   getAlbumPhotosAsync,
 } from "@/store/reducers/albumSlice";
-import { makeStyles } from "@mui/styles";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -19,17 +18,8 @@ import { RiDiscLine } from "react-icons/ri";
 import { CircularProgress } from "@mui/material";
 import _ from "lodash";
 
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    "&.MuiAvatar-root": {
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-}));
-
 const AlbumsPage = () => {
   const dispatch = useDispatch();
-  const classes = useStyles();
   const params = useParams();
   const { artistes } = useSelector(({ artist }) => artist);
   const { albums, photos, loading, photoLoading } = useSelector(
@@ -67,7 +57,7 @@ const AlbumsPage = () => {
                 >
                   <ListItemButton>
                     <ListItemAvatar>
-                      <Avatar className={classes.avatar}>
+                      <Avatar sx={{ backgroundColor: "primary.main" }}>
                         <RiDiscLine />
                       </Avatar>
                     </ListItemAvatar>
