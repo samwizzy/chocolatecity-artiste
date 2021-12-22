@@ -54,23 +54,22 @@ const ArtistesPage = () => {
                     primary={`${a.name} — ${a.email}`}
                     secondary={
                       <>
-                        <span>
+                        <span className="block mb-2">
                           {a.phone} — {a.website}
                         </span>
-                        <br />
-                        <span>{a.website}</span>
+                        <Button
+                          edge="start"
+                          size="small"
+                          variant="outlined"
+                          aria-label="delete"
+                          onClick={() => dispatch(getAlbumsAsync(a.id))}
+                        >
+                          see album
+                        </Button>
                       </>
                     }
                   />
-                  <ListItemSecondaryAction className="space-x-2">
-                    <Button
-                      edge="start"
-                      size="small"
-                      aria-label="delete"
-                      onClick={() => dispatch(getAlbumsAsync(a.id))}
-                    >
-                      view album
-                    </Button>
+                  <ListItemSecondaryAction>
                     <IconButton
                       edge="end"
                       aria-label="view"
