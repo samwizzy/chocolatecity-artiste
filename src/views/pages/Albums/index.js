@@ -37,7 +37,7 @@ const AlbumsPage = () => {
   console.log("albums mounted");
 
   return (
-    <div className="md:max-w-6xl w-full mr-auto p-8">
+    <div className="md:max-w-6xl w-full md:mr-auto p-8">
       <h2 className="text-4xl font-bold pb-8">Chocolate city artistes</h2>
 
       <div className="grid grid-cols-12 md:gap-x-16 gap-y-16">
@@ -85,7 +85,7 @@ const AlbumsPage = () => {
             <CircularProgress size={16} />
           ) : (
             <ImageList
-              sx={{ width: 500, height: 450 }}
+              sx={{ width: 500, maxWidth: "100%", height: 450 }}
               cols={3}
               rowHeight={164}
             >

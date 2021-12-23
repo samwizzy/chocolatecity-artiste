@@ -6,7 +6,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { HiOutlineInboxIn, HiOutlineMailOpen } from "react-icons/hi";
+import { HiOutlineUser, HiOutlineChatAlt2 } from "react-icons/hi";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +35,7 @@ function Layout({ children }) {
               onClick={(event) => handleListItemClick(event, 0, "artistes")}
             >
               <ListItemIcon>
-                <HiOutlineInboxIn color="#ccc" />
+                <HiOutlineUser color="#ccc" />
               </ListItemIcon>
               <ListItemText primary="Artistes" />
             </ListItemButton>
@@ -44,7 +44,7 @@ function Layout({ children }) {
               onClick={(event) => handleListItemClick(event, 1, "tweets")}
             >
               <ListItemIcon>
-                <HiOutlineMailOpen color="#ccc" />
+                <HiOutlineChatAlt2 color="#ccc" />
               </ListItemIcon>
               <ListItemText primary="Tweets" />
             </ListItemButton>
