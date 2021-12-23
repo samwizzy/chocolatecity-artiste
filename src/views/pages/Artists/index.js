@@ -16,6 +16,7 @@ import { FaRegUser } from "react-icons/fa";
 import { RiDiscLine } from "react-icons/ri";
 import { CircularProgress } from "@mui/material";
 import _ from "lodash";
+import ArtistesSkeleton from "./ArtistesSkeleton";
 
 const ArtistesPage = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const ArtistesPage = () => {
           </h2>
 
           {artistLoading ? (
-            <CircularProgress size={16} />
+            <ArtistesSkeleton />
           ) : (
             <List dense className="border-l-4 border-gray-400">
               {artistes.map((a) => (
