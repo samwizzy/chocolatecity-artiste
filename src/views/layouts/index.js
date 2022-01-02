@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -18,10 +18,11 @@ const useStyles = makeStyles((theme) => ({
 function Layout({ children }) {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const { pathname } = useLocation();
+  const [selectedPath, setSelectedPath] = React.useState(pathname);
 
-  const handleListItemClick = (event, index, path) => {
-    setSelectedIndex(index);
+  const handleListItemClick = (path) => {
+    setSelectedPath(path);
     navigate(path, { replace: true });
   };
 
@@ -31,8 +32,8 @@ function Layout({ children }) {
         <Box sx={{ width: "100%", maxWidth: "100%", color: "#ccc" }}>
           <List component="nav" aria-label="main nav" className={classes.list}>
             <ListItemButton
-              selected={selectedIndex === 0}
-              onClick={(event) => handleListItemClick(event, 0, "artistes")}
+              selected={selectedPath === "/artistes"}
+              onClick={(event) => handleListItemClick("/artistes")}
             >
               <ListItemIcon>
                 <HiOutlineUser color="#ccc" />
@@ -40,8 +41,8 @@ function Layout({ children }) {
               <ListItemText primary="Artistes" />
             </ListItemButton>
             <ListItemButton
-              selected={selectedIndex === 1}
-              onClick={(event) => handleListItemClick(event, 1, "tweets")}
+              selected={selectedPath === "/tweets"}
+              onClick={(event) => handleListItemClick("/tweets")}
             >
               <ListItemIcon>
                 <HiOutlineChatAlt2 color="#ccc" />

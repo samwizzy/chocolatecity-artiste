@@ -11,7 +11,7 @@ function ArtistesSkeleton() {
     <div>
       <List dense className="border-l-4 border-gray-400">
         {[...Array(10).keys()].map((a) => (
-          <ListItem key={a.id} alignItems="flex-start">
+          <ListItem key={a} alignItems="flex-start">
             <ListItemAvatar>
               <Skeleton
                 animation="wave"
